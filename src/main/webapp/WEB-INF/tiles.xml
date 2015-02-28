@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC 
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/pages/layout/layout.jsp">
+		<put-attribute name="title" value="StayFit" />
+		<put-attribute name="header" value="/WEB-INF/pages/layout/header.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/pages/layout/nav.jsp" />
+		<put-attribute name="body" value="/WEB-INF/pages/layout/body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/pages/layout/footer.jsp" />
+	</definition>
+
+	<definition name="index" extends="baseLayout">
+	
+	</definition>
+
+</tiles-definitions>
