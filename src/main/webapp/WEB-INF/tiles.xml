@@ -8,12 +8,24 @@
 		<put-attribute name="title" value="StayFit" />
 		<put-attribute name="header" value="/WEB-INF/pages/layout/header.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/pages/layout/nav.jsp" />
-		<put-attribute name="body" value="/WEB-INF/pages/layout/body.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/pages/layout/footer.jsp" />
+		<put-attribute name="right_panel"
+			value="/WEB-INF/pages/layout/right_panel.jsp" />
 	</definition>
 
 	<definition name="index" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/index.jsp" />
+	</definition>
 	
+	<definition name="registration" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/registration.jsp" />
+	</definition>
+	
+	<definition name="login" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
+	</definition>
+		
+	<definition name="about" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/about.jsp" />
 	</definition>
 
 </tiles-definitions>
