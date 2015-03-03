@@ -15,5 +15,8 @@
    
     <mvc:annotation-driven />
     <mvc:resources mapping="/**" location="/WEB-INF/pages/"/>
+    
+    <!-- Delete -->
+    <import resource="spring-data.xml"/>
 
 </beans>
