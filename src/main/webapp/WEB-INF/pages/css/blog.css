@@ -98,7 +98,6 @@ h6, .h6 {
  */
 
 .blog-main {
-	padding-left: 100px;
   font-size: 18px;
   line-height: 1.5;
 }
@@ -164,10 +163,13 @@ h6, .h6 {
 }
 
 .main-container{
-	background-color: #E6F5FA;
+	background: url('../image/fon.jpg') no-repeat; 
+	background-attachment:fixed;
+    background-size: cover;
 }
 
 .body-container{
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius:6px;
+	padding-left: 100px;
 }

@@ -12,9 +12,11 @@
     	<link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/bootstrap-theme.min.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/blog.css' />" rel="stylesheet">
+		<link href="<c:url value='/css/signin.css' />" rel="stylesheet">
+		
 	</head>
 	
-	<body>
+	<body bgcolor="#c0c0c0">
 		
 		<div class="container-fluid main-container">
 			<tiles:insertAttribute name="header"/>
