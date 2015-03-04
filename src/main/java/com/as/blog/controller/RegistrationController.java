@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,20 +23,24 @@ public class RegistrationController {
 	UserService userService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String test(){
+	public String openRegistrationForm(Model model){
+		model.addAttribute(new User());
+		return "registration";
+	}
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public String register(User user, BindingResult bindingResult){
 
-		User user = new User();
-		
-		user.setName("Andrii");
-		user.setEmail("a@gmail");
-		user.setPassword("andrii");
-		user.setSex(Sex.MALE);
-		user.setBirthday(Date.valueOf("1995-03-15"));
 		user.setRegistrationDate(Date.valueOf("2015-03-03"));
-		user.setRole(Role.ROLE_ADMIN);
-		user.setEnabled((byte)1);
+		user.setRole(Role.ROLE_ANONYMOUS);
+		
+//		user.setEnabled((byte)1);
 
+		System.out.println(user);
+		
 		userService.save(user);
+		
+		System.out.println(user);
 		
 		return "registration";
 	}

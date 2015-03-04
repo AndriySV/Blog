@@ -2429,7 +2429,7 @@ input[type="month"].input-lg {
 }
 .radio label,
 .checkbox label {
-  padding-left: 20px;
+  padding-left: 30px;
   margin-bottom: 0;
   font-weight: normal;
   cursor: pointer;
@@ -2703,7 +2703,7 @@ select[multiple].input-lg {
   .form-horizontal .control-label {
     padding-top: 7px;
     margin-bottom: 0;
-    text-align: right;
+    text-align: left;
   }
 }
 .form-horizontal .has-feedback .form-control-feedback {

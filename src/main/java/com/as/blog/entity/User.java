@@ -36,7 +36,7 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private Sex sex;
 	
-	@Column(name="birthday", unique = false, nullable = false)
+	@Column(name="birthday", unique = false, nullable = true)
 	private Date birthday;
 	
 	@Column(name="kind_of_sport", unique = false, nullable = true)
@@ -60,9 +60,6 @@ public class User {
 	@Column(name="role", unique = false, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
-	@Column(name="enabled", unique = false, nullable = false)
-	private byte enabled;
 	
 	public User() {
 	}
@@ -171,12 +168,13 @@ public class User {
 		this.role = role;
 	}
 
-	public byte getEnabled() {
-		return enabled;
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email
+				+ ", password=" + password + ", sex=" + sex + ", birthday="
+				+ birthday + ", kindOfSport=" + kindOfSport + ", experience="
+				+ experience + ", city=" + city + ", country=" + country
+				+ ", avatarPath=" + avatarPath + ", registrationDate="
+				+ registrationDate + ", role=" + role + "]";
 	}
-
-	public void setEnabled(byte enabled) {
-		this.enabled = enabled;
-	}
-	
 }

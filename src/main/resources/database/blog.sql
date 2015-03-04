@@ -15,7 +15,7 @@ CREATE TABLE user (
 	email varchar(45) NOT NULL UNIQUE,
 	password varchar(15) NOT NULL UNIQUE,
 	sex enum('MALE', 'FEMALE') NOT NULL,
-	birthday date NOT NULL,
+	birthday date,
 	kind_of_sport varchar(255),
 	experience varchar(255),
 	city varchar(45),

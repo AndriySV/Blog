@@ -9,7 +9,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		  		
-    	<link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
+    	<link href="<c:url value='/css/bootstrap.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/bootstrap-theme.min.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/blog.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/signin.css' />" rel="stylesheet">
@@ -38,6 +38,8 @@
 	
 		<script src="<c:url value='/js/jquery.js' />" ></script>
 		<script src="<c:url value='/js/bootstrap.min.js' />" ></script>
+		<script src="<c:url value='/js/validator.js' />" ></script>
+		<script src="<c:url value='/js/popover.js' />" ></script>
 	
 	</body>
 
