@@ -40,7 +40,7 @@
 		<script src="<c:url value='/js/bootstrap.min.js' />" ></script>
 		<script src="<c:url value='/js/validator.js' />" ></script>
 		<script src="<c:url value='/js/popover.js' />" ></script>
-	
+		
 	</body>
 
 </html>

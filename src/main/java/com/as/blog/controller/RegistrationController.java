@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.as.blog.entity.User;
 import com.as.blog.entity.template.Role;
-import com.as.blog.entity.template.Sex;
 import com.as.blog.service.UserService;
+import com.as.blog.util.RegistrationValidator;
 
 
 @Controller
@@ -20,7 +20,10 @@ import com.as.blog.service.UserService;
 public class RegistrationController {
 
 	@Autowired
-	UserService userService;
+	private UserService userService;
+	
+	@Autowired
+	private RegistrationValidator registrationValidator;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String openRegistrationForm(Model model){
@@ -31,18 +34,25 @@ public class RegistrationController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String register(User user, BindingResult bindingResult){
 
-		user.setRegistrationDate(Date.valueOf("2015-03-03"));
-		user.setRole(Role.ROLE_ANONYMOUS);
+		registrationValidator.validate(user, bindingResult);
 		
-//		user.setEnabled((byte)1);
-
-		System.out.println(user);
+		if (!bindingResult.hasErrors()) {
+			
+			System.out.println("date  " + user.getBirthday());
+			
+			Date currentDate = new Date(new java.util.Date().getTime());
+			
+			user.setRegistrationDate(currentDate);
+			user.setRole(Role.ROLE_USER);
 		
-		userService.save(user);
-		
-		System.out.println(user);
-		
-		return "registration";
+			userService.save(user);
+			
+			return "index";
+		} else {
+			return "registration";
+		}
 	}
+	
+	
 	
 }

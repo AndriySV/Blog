@@ -1,5 +1,7 @@
 package com.as.blog.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void save(User user) {
 		userRepository.save(user);
+	}
+
+	@Override
+	public List<User> findByNameOrEmail(String name, String email) {
+		return userRepository.findByNameOrEmail(name, email);
 	}
 
 }

@@ -17,6 +17,7 @@
 						placeholder="Bід 2 до 20 символів" pattern="\b[A-Za-z0-9]{2,20}\b"
 						data-error="Ви ввели некоректне ім'я !" required="required" />
 					<div class="help-block with-errors"></div>
+					<sf:errors path="name" class="error" />
 				</div>
 			</div>
 
@@ -28,6 +29,7 @@
 						pattern="\b(?!.{31})([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})\b"
 						data-error="Ви ввели некоректний email !" required="required" />
 					<div class="help-block with-errors"></div>
+					<sf:errors path="email" class="error" />
 				</div>
 			</div>
 
@@ -54,14 +56,14 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="birthday" class="col-sm-3 control-label">Дата
-					народження</label>
+			<div class="form-group required">
+				<label for="birthday" class="col-sm-3 control-label">Дата народження</label>
 				<div class="col-sm-9">
 					<sf:input class="form-control" id="birthday" path="birthday"
 						placeholder="yyyy-mm-dd"
 						pattern="(((19|20)[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01]))\b"
-						data-error="Ви ввели некоректну дату !" />
+						data-error="Ви ввели некоректну дату !" 
+						required="required" />
 					<div class="help-block with-errors"></div>
 				</div>
 			</div>

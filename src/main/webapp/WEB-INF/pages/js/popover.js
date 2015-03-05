@@ -74,7 +74,7 @@ $(document).ready(function() {
 				container:"body",
 				toggle:"popover",
 				placement:"right",
-				content:"Поле, необов'язкове для заповнення. " +
+				content:"Поле, обов'язкове для заповнення. " +
 						"Дата повинна відповідати шаблону  yyyy-mm-dd (рік-місяць-день)."
 		});
 		$(this).popover("show");
