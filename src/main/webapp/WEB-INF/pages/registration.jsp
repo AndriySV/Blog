@@ -57,13 +57,17 @@
 			</div>
 
 			<div class="form-group required">
-				<label for="birthday" class="col-sm-3 control-label">Дата народження</label>
-				<div class="col-sm-9">
+				<label for="birthday" class="col-sm-3 control-label">Дата
+					народження</label>
+				<div class="col-sm-9 input-append date" data-date="12-02-2012"
+					data-date-format="dd-mm-yyyy" data-date-viewmode="years">
 					<sf:input class="form-control" id="birthday" path="birthday"
 						placeholder="yyyy-mm-dd"
 						pattern="(((19|20)[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01]))\b"
-						data-error="Ви ввели некоректну дату !" 
-						required="required" />
+						data-error="Ви ввели некоректну дату !" required="required" />
+
+					<span class="add-on"><i class="glyphicon-th"></i></span>
+
 					<div class="help-block with-errors"></div>
 				</div>
 			</div>
@@ -72,19 +76,27 @@
 				<label class="col-sm-3 control-label" for="sex">Стать</label>
 				<div class="col-sm-9">
 					<div class="radio">
-						<label> <sf:radiobutton path="sex" name="sex"
-								value="MALE" checked="true"/>Чоловік
-						</label>
-						<label> <sf:radiobutton path="sex" name="sex"
+						<label> <sf:radiobutton path="sex" name="sex" value="MALE"
+								checked="true" />Чоловік
+						</label> <label> <sf:radiobutton path="sex" name="sex"
 								value="FEMALE" />Жінка
 						</label>
 					</div>
 				</div>
 			</div>
 
+			<div class="input-append date" id="dp3" data-date="12-02-2012"
+				data-date-format="dd-mm-yyyy">
+				<input class="span2" size="16" type="text" value="12-02-2012">
+				<span class="add-on"><i class="icon-calendar"></i></span>
+			</div>
+
 			<div class="form-group">
 				<div class="col-sm-offset-4">
-					<button type="submit" class="btn btn-danger btn-lg">Зареєструватися</button>
+					<button type="submit" class="btn btn-danger btn-lg">
+					<span class="glyphicon glyphicon-ok"></span>
+					Зареєструватися</button>
+					
 				</div>
 			</div>
 

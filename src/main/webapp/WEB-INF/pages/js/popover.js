@@ -68,7 +68,7 @@ $(document).ready(function() {
 	});
 	
 	
-	$("#birthday").focus(function() {
+/*	$("#birthday").focus(function() {
 		$(this).popover({
 				trigger:"focus",
 				container:"body",
@@ -82,6 +82,6 @@ $(document).ready(function() {
 	
 	$("#birthday").blur(function() {
 		$(this).popover("hide");
-	});
+	});*/
 	
 });

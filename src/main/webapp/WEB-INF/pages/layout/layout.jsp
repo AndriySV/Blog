@@ -13,6 +13,8 @@
 		<link href="<c:url value='/css/bootstrap-theme.min.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/blog.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/signin.css' />" rel="stylesheet">
+		<link href="<c:url value='/css/datepicker.css' />" rel="stylesheet">
+		
 		
 	</head>
 	
@@ -40,7 +42,8 @@
 		<script src="<c:url value='/js/bootstrap.min.js' />" ></script>
 		<script src="<c:url value='/js/validator.js' />" ></script>
 		<script src="<c:url value='/js/popover.js' />" ></script>
-		
+		<script src="<c:url value='/js/bootstrap-datepicker.js' />" ></script>
+		<script src="<c:url value='/js/d.js' />" ></script>
 	</body>
 
 </html>
