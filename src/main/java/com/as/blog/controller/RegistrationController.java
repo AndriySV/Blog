@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.as.blog.entity.User;
 import com.as.blog.entity.template.Role;
 import com.as.blog.service.UserService;
+import com.as.blog.util.PasswordEncoder;
 import com.as.blog.util.RegistrationValidator;
 
 
@@ -38,11 +39,12 @@ public class RegistrationController {
 		
 		if (!bindingResult.hasErrors()) {
 			
-			System.out.println("date  " + user.getBirthday());
+			String hashedPasword = PasswordEncoder.encode(user.getPassword());
+			user.setPassword(hashedPasword);
 			
 			Date currentDate = new Date(new java.util.Date().getTime());
-			
 			user.setRegistrationDate(currentDate);
+			
 			user.setRole(Role.ROLE_USER);
 		
 			userService.save(user);

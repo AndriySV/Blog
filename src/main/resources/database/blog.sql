@@ -13,7 +13,7 @@ CREATE TABLE user (
 	id bigint NOT NULL AUTO_INCREMENT,
 	name varchar(20) NOT NULL UNIQUE,
 	email varchar(45) NOT NULL UNIQUE,
-	password varchar(15) NOT NULL UNIQUE,
+	password varchar(64) NOT NULL,
 	sex enum('MALE', 'FEMALE') NOT NULL,
 	birthday date NOT NULL,
 	kind_of_sport varchar(255),

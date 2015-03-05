@@ -40,6 +40,7 @@
 		<hibernate-core-version>4.3.8.Final</hibernate-core-version>
 		<hibernate-entitymanager-version>4.3.8.Final</hibernate-entitymanager-version>
 
+		<commons-codec-version>1.10</commons-codec-version>
 	</properties>
 
 	<dependencies>
@@ -160,7 +161,13 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate-entitymanager-version}</version>
 		</dependency>
-
+		
+		<!-- Encoding -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons-codec-version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
