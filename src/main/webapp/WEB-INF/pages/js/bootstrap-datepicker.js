@@ -369,11 +369,11 @@
 				navStep: 10
 		}],
 		dates:{
-			days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-			daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-			daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-			months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-			monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+			days: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "Пятниця", "Субота", "Неділя"],
+			daysShort: ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
+			daysMin: ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
+			months: ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"],
+			monthsShort: ["Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"]
 		},
 		isLeapYear: function (year) {
 			return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0))

@@ -67,21 +67,4 @@ $(document).ready(function() {
 		$(this).popover("hide");
 	});
 	
-	
-/*	$("#birthday").focus(function() {
-		$(this).popover({
-				trigger:"focus",
-				container:"body",
-				toggle:"popover",
-				placement:"right",
-				content:"Поле, обов'язкове для заповнення. " +
-						"Дата повинна відповідати шаблону  yyyy-mm-dd (рік-місяць-день)."
-		});
-		$(this).popover("show");
-	});
-	
-	$("#birthday").blur(function() {
-		$(this).popover("hide");
-	});*/
-	
 });

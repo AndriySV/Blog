@@ -14,8 +14,6 @@
 		<link href="<c:url value='/css/blog.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/signin.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/datepicker.css' />" rel="stylesheet">
-		
-		
 	</head>
 	
 	<body bgcolor="#c0c0c0">
@@ -43,7 +41,7 @@
 		<script src="<c:url value='/js/validator.js' />" ></script>
 		<script src="<c:url value='/js/popover.js' />" ></script>
 		<script src="<c:url value='/js/bootstrap-datepicker.js' />" ></script>
-		<script src="<c:url value='/js/d.js' />" ></script>
+		<script src="<c:url value='/js/calendar.js' />" ></script>
 	</body>
 
 </html>

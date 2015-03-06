@@ -49,7 +49,7 @@ public class RegistrationController {
 		
 			userService.save(user);
 			
-			return "index";
+			return "redirect:/";
 		} else {
 			return "registration";
 		}
