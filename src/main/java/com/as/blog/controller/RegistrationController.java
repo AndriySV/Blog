@@ -3,6 +3,11 @@ package com.as.blog.controller;
 import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +31,14 @@ public class RegistrationController {
 	@Autowired
 	private RegistrationValidator registrationValidator;
 	
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@Autowired 
+	private UserDetailsService userDetailsService;
+	
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String openRegistrationForm(Model model){
 		model.addAttribute(new User());
@@ -39,8 +52,8 @@ public class RegistrationController {
 		
 		if (!bindingResult.hasErrors()) {
 			
-			String hashedPasword = PasswordEncoder.encode(user.getPassword());
-			user.setPassword(hashedPasword);
+			String password = user.getPassword();
+			user.setPassword(PasswordEncoder.encode(password));
 			
 			Date currentDate = new Date(new java.util.Date().getTime());
 			user.setRegistrationDate(currentDate);
@@ -49,12 +62,27 @@ public class RegistrationController {
 		
 			userService.save(user);
 			
+			user.setPassword(password);
+			performLogin(user);
+			
 			return "redirect:/";
 		} else {
 			return "registration";
 		}
 	}
 	
-	
+	private void performLogin(User user) {
+	    try {
+	      UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+	      UsernamePasswordAuthenticationToken authenticationToken = 
+	    		  new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());
+	      authenticationManager.authenticate(authenticationToken);
+	 
+	      if(authenticationToken.isAuthenticated()) {
+	        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+	      }
+	    } catch (Exception e) {
+	    }
+	}
 	
 }

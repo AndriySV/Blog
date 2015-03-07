@@ -12,7 +12,7 @@
     	<link href="<c:url value='/css/bootstrap.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/bootstrap-theme.min.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/blog.css' />" rel="stylesheet">
-		<link href="<c:url value='/css/signin.css' />" rel="stylesheet">
+		<link href="<c:url value='/css/login.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/datepicker.css' />" rel="stylesheet">
 	</head>
 	
@@ -42,6 +42,7 @@
 		<script src="<c:url value='/js/popover.js' />" ></script>
 		<script src="<c:url value='/js/bootstrap-datepicker.js' />" ></script>
 		<script src="<c:url value='/js/calendar.js' />" ></script>
+		
 	</body>
 
 </html>
