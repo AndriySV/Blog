@@ -16,7 +16,7 @@
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="url" value="${url}" />
+		<property name="url" value="${url}?useUnicode=true&amp;characterEncoding=utf8" />
 		<property name="driverClassName" value="${driver}" />
 		<property name="username" value="${user}" />
 		<property name="password" value="${password}" />
