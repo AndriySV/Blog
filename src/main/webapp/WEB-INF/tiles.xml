@@ -16,16 +16,20 @@
 		<put-attribute name="body" value="/WEB-INF/pages/index.jsp" />
 	</definition>
 	
-	<definition name="registration" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/pages/registration.jsp" />
+	<definition name="about" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/about.jsp" />
+	</definition>
+		
+	<definition name="admin" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/admin.jsp" />
 	</definition>
 	
 	<definition name="login" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
 	</definition>
-		
-	<definition name="about" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/pages/about.jsp" />
+	
+	<definition name="registration" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/registration.jsp" />
 	</definition>
-
+	
 </tiles-definitions>

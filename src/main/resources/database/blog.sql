@@ -51,9 +51,9 @@ CREATE TABLE music (
 CREATE TABLE article (
 	
 	id bigint NOT NULL AUTO_INCREMENT,
-	title varchar(255) NOT NULL,
-	content varchar(255) NOT NULL,
-	path varchar(255) NOT NULL,
+	title text NOT NULL UNIQUE,
+	content text NOT NULL,
+	creation_date date NOT NULL,
 	
 	PRIMARY KEY (id)
 );

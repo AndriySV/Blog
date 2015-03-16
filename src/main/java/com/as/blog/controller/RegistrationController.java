@@ -71,6 +71,10 @@ public class RegistrationController {
 		}
 	}
 	
+	/**
+	 * Auto login
+	 * @param user
+	 */
 	private void performLogin(User user) {
 	    try {
 	      UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
