@@ -3,5 +3,5 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
-<h1>StayFit</h1>
+<h1><font color="#CC0099">StayFit</font></h1>
 

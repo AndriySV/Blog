@@ -1,4 +1,4 @@
-<div class="blog-main">
+<div class="body-padding blog-main">
 
 	<div class="blog-post">
 		<h2 class="blog-post-title">Sample blog post</h2>

@@ -9,7 +9,7 @@
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 
-		<a class="navbar-brand" href="#">StayFit</a>
+		<a class="navbar-brand" href="#"><font color="#CC0099">StayFit</font></a>
 
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
@@ -33,14 +33,21 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<security:authorize access="hasRole('ROLE_ANONYMOUS')">
+					<c:if test="${not empty param.error}">
+						<li class="error-login">Невірний email чи пароль. <br>Повторіть введення !<li>
+					</c:if>
+				
 					<li><a href="#login" data-toggle="modal">Увійти</a></li>
 					<li><a href="registration">Зареєструватись</a></li>
 				</security:authorize>
+
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<li><a href="admin">Admin</a></li>
+				</security:authorize>
 				
 				<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-					<li><a>${pageContext.request.userPrincipal.name}</a></li>
-					
-					<li><a href="/userProfile" >Мій профіль</a></li>
+					<li><a class="glyphicon glyphicon-user"> ${pageContext.request.userPrincipal.name}</a></li>
+					<li><a href="userProfile" >Мій профіль</a></li>
 					<li><a href="${logoutUrl}" >Вийти</a></li>
 				</security:authorize>
 			</ul>

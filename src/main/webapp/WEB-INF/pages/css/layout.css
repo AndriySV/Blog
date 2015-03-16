@@ -1,0 +1,54 @@
+body {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #555;
+}
+
+.main-container {
+	background: url('../image/fon.jpg') no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.body-container {
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 6px;
+}
+
+.body-padding{
+	padding-left: 100px;
+	padding-right: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+/*
+ * Main column and sidebar layout
+ */
+.blog-main {
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+	margin-top: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	color: #333;
+}
+
+
+/* It's a sign '*' for the required fields 
+	in the registration form */
+.form-group.required .control-label:after {
+	color: #d00;
+	content: "*";
+	margin-left: 8px;
+	top: 7px;
+}
+
+/* Error style for the validation 
+	into the registration form  */
+.error {
+	color: #a94442;
+}
