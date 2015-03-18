@@ -57,7 +57,7 @@
 				<div>
 					<sf:form action="admin/saveImage" method="POST"
 						class="form-horizontal add-file" modelAttribute="uploadImage"
-						enctype="multipart/form-data">
+						role="form" enctype="multipart/form-data">
 						
 						<legend class="text-center">Додати зображення</legend>
 
@@ -65,8 +65,8 @@
 							<table id="fileTable">
 								<tr>
 									<td>
-										<input type="file" class="filestyle"
-											data-buttonBefore="true" name="files[0]">
+										<input type="file" class="filestyle" 
+											data-buttonBefore="true" name="files[0]"/>
 									</td>
 								</tr>
 							</table>

@@ -43,7 +43,7 @@ CREATE TABLE music (
 	id bigint NOT NULL AUTO_INCREMENT,
 	song_name varchar(255) NOT NULL,
 	singer_name varchar(255),
-	path varchar(255) NOT NULL,
+	path text NOT NULL,
 	
 	PRIMARY KEY (id)
 );
@@ -51,7 +51,7 @@ CREATE TABLE music (
 CREATE TABLE article (
 	
 	id bigint NOT NULL AUTO_INCREMENT,
-	title text NOT NULL UNIQUE,
+	title text NOT NULL,
 	content text NOT NULL,
 	creation_date date NOT NULL,
 	
@@ -74,7 +74,7 @@ CREATE TABLE favorite (
 CREATE TABLE image (
 	
 	id bigint NOT NULL AUTO_INCREMENT,
-	path varchar(255) NOT NULL,
+	path text NOT NULL,
 	
 	PRIMARY KEY (id)
 );
@@ -94,7 +94,7 @@ CREATE TABLE forum (
 	
 	id bigint NOT NULL AUTO_INCREMENT,
 	message text NOT NULL,
-	image_path varchar(255) NOT NULL,
+	image_path text NOT NULL,
 	message_date datetime NOT NULL,
 	user_id bigint NOT NULL,
 	
