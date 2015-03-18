@@ -300,7 +300,7 @@
 	};
 
 	$.fn.filestyle.defaults = {
-		'buttonText' : 'Choose file',
+		'buttonText' : 'Вибрати зображення',
 		'iconName' : 'glyphicon-folder-open',
 		'buttonName' : 'btn-default',
 		'size' : 'nr',
@@ -335,4 +335,5 @@
 			$this.filestyle(options);
 		});
 	});
+	
 })(window.jQuery);

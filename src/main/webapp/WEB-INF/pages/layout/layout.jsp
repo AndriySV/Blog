@@ -17,7 +17,6 @@
 		<link href="<c:url value='/css/layout.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/right_panel.css' />" rel="stylesheet">
 		<link href="<c:url value='/css/index.css' />" rel="stylesheet">
-		
 	</head>
 	
 	<body bgcolor="#c0c0c0">
@@ -47,7 +46,7 @@
 		<script src="<c:url value='/js/bootstrap-datepicker.js' />" ></script>
 		<script src="<c:url value='/js/calendar.js' />" ></script>
 		<script src="<c:url value='/js/bootstrap-filestyle.js' />" ></script>
-		
+		<script src="<c:url value='/js/add-file.js' />" ></script>
 	</body>
 
 </html>
