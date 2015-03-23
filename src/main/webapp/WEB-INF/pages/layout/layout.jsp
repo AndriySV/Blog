@@ -47,6 +47,8 @@
 		<script src="<c:url value='/js/calendar.js' />" ></script>
 		<script src="<c:url value='/js/bootstrap-filestyle.js' />" ></script>
 		<script src="<c:url value='/js/add-file.js' />" ></script>
+		<script src="<c:url value='/js/index.js' />" ></script>
+		
 	</body>
 
 </html>

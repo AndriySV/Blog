@@ -1,5 +1,7 @@
 package com.as.blog.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public Article findByTitle(String title) {
 		return articleRepository.findByTitle(title);
+	}
+
+	@Override
+	public List<Article> findAll() {
+		return articleRepository.findAll();
 	}
 
 }

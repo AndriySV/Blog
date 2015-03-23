@@ -63,6 +63,8 @@ public class AdminController {
 			
 			articleService.save(article);
 			
+			// TODO invoke the method which displays this article on the main page !
+			
 			return "redirect:/";
 		} else {
 			return "admin";
