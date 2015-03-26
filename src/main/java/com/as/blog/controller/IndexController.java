@@ -40,7 +40,7 @@ public class IndexController {
 	public @ResponseBody List<Article> showArticles(){
 		List<Article> articles = articleService.findAll();
 
-
+// Test !
 		
 		
 		return articles;
