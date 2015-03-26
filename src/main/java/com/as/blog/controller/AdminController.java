@@ -13,10 +13,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.as.blog.entity.Article;
+import com.as.blog.entity.ArticleImage;
 import com.as.blog.entity.Image;
+import com.as.blog.service.ArticleImageService;
 import com.as.blog.service.ArticleService;
 import com.as.blog.service.ImageService;
 import com.as.blog.util.ArticleValidator;
@@ -39,11 +42,14 @@ public class AdminController {
 	@Autowired
 	private ImageValidator imageValidator; 
 	
+	@Autowired
+	private ArticleImageService articleImageService;
+	
 	@Value("${root_path}")
 	private String rootPath;
 	
-	@Value("${picture_save_directory}")
-	private String pictureSaveDirectory;
+	@Value("${image_path}")
+	private String imagePath;
 	
 	@RequestMapping
 	public String openAdmin(Model model) {
@@ -52,7 +58,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String addArticle(Article article, BindingResult bindingResult) {
+	public String addArticle(Article article, BindingResult bindingResult, String imageName) {
 		
 		articleValidator.validate(article, bindingResult);
 		
@@ -63,7 +69,11 @@ public class AdminController {
 			
 			articleService.save(article);
 			
-			// TODO invoke the method which displays this article on the main page !
+			ArticleImage articleImage = new ArticleImage();
+			articleImage.setArticle(article);
+			articleImage.setImage(imageService.findByName(imageName));
+			
+			articleImageService.save(articleImage);
 			
 			return "redirect:/";
 		} else {
@@ -74,8 +84,6 @@ public class AdminController {
 	@RequestMapping(value="/saveImage", method=RequestMethod.POST)
 	public String saveFile(@ModelAttribute("uploadImage") FileUpload uploadImage) 
 			throws IllegalStateException, IOException {
-		String imagePath = null;
-		
 		List<MultipartFile> images = uploadImage.getFiles();
 		
 		if (null != images && images.size() > 0) {
@@ -83,19 +91,26 @@ public class AdminController {
 				String imageName = image.getOriginalFilename();
 				
 				if (!"".equalsIgnoreCase(imageName)) {
-					imagePath =  pictureSaveDirectory + imageName;
-					
 					Image imageEntity = new Image();
 					imageEntity.setPath(imagePath);
+					imageEntity.setName(imageName);
 					
-					if (imageValidator.validate(imageEntity.getPath())) {
-						image.transferTo(new File(rootPath + imagePath));
+					
+					if (imageValidator.validate(imageEntity.getName())) {
+						image.transferTo(new File(rootPath + imagePath + imageName));
 						imageService.save(imageEntity);
 					}
 				}
 			}
 		}
 		return "redirect:/admin";
+	}
+	
+	@RequestMapping(value="/recieveImages", method=RequestMethod.GET)
+	public @ResponseBody List<Image> recieveImages(){
+		List<Image> images = imageService.findAll();
+		
+		return images;
 	}
 	
 }

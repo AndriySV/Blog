@@ -6,6 +6,8 @@ import com.as.blog.entity.Image;
 
 public interface ImageRepository extends JpaRepository<Image, Long> {
 
-	public Image findByPath(String path);
-
+	public Image findById(long id);
+	
+	public Image findByName(String name);
+	
 }

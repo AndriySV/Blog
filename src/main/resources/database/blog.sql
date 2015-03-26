@@ -71,10 +71,12 @@ CREATE TABLE favorite (
 	FOREIGN KEY (music_id) REFERENCES music (id)
 );
 
+-- TODO: Delete the field path if it is not need !
 CREATE TABLE image (
 	
 	id bigint NOT NULL AUTO_INCREMENT,
 	path text NOT NULL,
+	name varchar(255) NOT NULL UNIQUE,
 	
 	PRIMARY KEY (id)
 );

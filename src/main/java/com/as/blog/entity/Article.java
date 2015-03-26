@@ -101,5 +101,11 @@ public class Article {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ", title=" + title + ", content="
+				+ content + ", creationDate=" + creationDate + "]";
+	}
 	
 }

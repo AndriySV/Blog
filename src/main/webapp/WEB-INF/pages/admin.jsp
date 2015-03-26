@@ -6,7 +6,8 @@
 
 	<div class="col-md-3 right-tab">
 		<ul class="nav nav-tabs nav-stacked">
-			<li class="active"><a href="#addArticle" data-toggle="tab">Створити</a></li>
+			<li class="active"><a href="#addArticle" data-toggle="tab">Створити статтю</a></li>
+			<li><a href="#downloadImage" data-toggle="tab">Завантажити зображення</a></li>
 			<li><a href="#statictic" data-toggle="tab">Статистика</a></li>
 			<li><a href="#deletion" data-toggle="tab">Видалити</a></li>
 			<li><a href="#other" data-toggle="tab">Інше</a></li>
@@ -19,13 +20,12 @@
 			<div class="tab-pane active" id="addArticle">
 
 				<div>
-
 					<sf:form action="admin/add" method="POST" class="form-horizontal"
 						role="form" modelAttribute="article" data-toggle="validator">
 
 						<fieldset>
 							<!-- Form Name -->
-							<legend class="text-center">Додати статтю</legend>
+							<legend class="text-center">Створити статтю</legend>
 
 							<!-- Field Title -->
 							<div class="form-group required">
@@ -38,10 +38,28 @@
 
 							<!-- Field Content -->
 							<div class="form-group required">
-								<sf:textarea class="form-control" rows="5" cols=""
+								<sf:textarea class="form-control" rows="10" cols=""
 									path="content" placeholder="Введіть статтю"
 									data-error="Введіть статтю !" required="required" />
 								<div class="help-block with-errors"></div>
+							</div>
+							
+							<!-- Field Select image -->
+							<div class="form-group">
+								<label for="selectImageDiv" class="col-sm-3 control-label">Додати зображення</label>
+								<div class="col-sm-6" id="selectImageDiv">
+									
+									<!-- TODO Use special bootstrap-select (with icon)  -->
+									<select class="form-control" id="selectImage" name="imageName">
+										<!-- Data are uploaded from the database -->
+									</select>
+									
+								</div>	
+								<div class="col-sm-3">
+								
+									<!-- TODO Make a tip which will be shown during tipping something in this field  -->
+									<input type="text" class="form-control" placeholder="параграф №: ">
+								</div>
 							</div>
 
 							<div class="form-group">
@@ -54,12 +72,15 @@
 					</sf:form>
 				</div>
 				
+			</div>
+
+			<div class="tab-pane" id="downloadImage">
 				<div>
 					<sf:form action="admin/saveImage" method="POST"
 						class="form-horizontal add-file" modelAttribute="uploadImage"
 						role="form" enctype="multipart/form-data">
 						
-						<legend class="text-center">Додати зображення</legend>
+						<legend class="text-center">Завантажити зображення</legend>
 
 						<div class="form-group">
 							<table id="fileTable">
@@ -73,21 +94,20 @@
 						</div>
 
 						<div class="form-group">
-							<button type="button" id="AddImage" class="btn btn-danger btn-sm">
-								<span class="glyphicon glyphicon-plus"></span> Ще одну
+							<button type="button" id="chooseImage" class="btn btn-danger btn-sm">
+								<span class="glyphicon glyphicon-plus"></span> Ще одне
 							</button>
 						</div>
 
 						<div class="form-group">
-								<button type="submit" id="addImage" class="btn btn-danger btn-lg center-block">
-									<span class="glyphicon glyphicon-ok"></span> Додати зображення
+								<button type="submit" class="btn btn-danger btn-lg center-block">
+									<span class="glyphicon glyphicon-ok"></span> Завантажити
 								</button>
 						</div>
 
 					</sf:form>
 
 				</div>
-
 
 			</div>
 

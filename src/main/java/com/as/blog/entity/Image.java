@@ -16,8 +16,12 @@ public class Image {
 	@Column(name="id")
 	private long id;
 	
-	@Column(name="path", unique=true, nullable=false)
+	@Column(name="path", unique=false, nullable=false)
 	private String path;
+	
+
+	@Column(name="name", unique=true, nullable=false)
+	private String name;
 	
 	public Image() {
 	}
@@ -38,32 +42,12 @@ public class Image {
 		this.path = path;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((path == null) ? 0 : path.hashCode());
-		return result;
+	public String getName() {
+		return name;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Image other = (Image) obj;
-		if (id != other.id)
-			return false;
-		if (path == null) {
-			if (other.path != null)
-				return false;
-		} else if (!path.equals(other.path))
-			return false;
-		return true;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

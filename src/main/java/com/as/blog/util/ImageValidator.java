@@ -11,8 +11,8 @@ public class ImageValidator {
 	@Autowired
 	private ImageService imageService;
 
-	public boolean validate(String imagePath) {
-		Image existingImage = imageService.findByPath(imagePath);
+	public boolean validate(String imageName) {
+		Image existingImage = imageService.findByName(imageName);
 		
 		if (existingImage == null) {
 			return true;
