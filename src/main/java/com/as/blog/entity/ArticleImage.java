@@ -25,6 +25,9 @@ public class ArticleImage {
 	@ManyToOne
 	@JoinColumn(name="image_id", unique=false, nullable=false)
 	private Image image;
+	
+	@Column(name="paragraph", unique=false, nullable=false)
+	private byte paragraph;
 
 	public ArticleImage() {
 	}
@@ -51,6 +54,14 @@ public class ArticleImage {
 
 	public void setImage(Image image) {
 		this.image = image;
+	}
+
+	public byte getParagraph() {
+		return paragraph;
+	}
+
+	public void setParagraph(byte paragraph) {
+		this.paragraph = paragraph;
 	}
 	
 }

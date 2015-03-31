@@ -86,6 +86,7 @@ CREATE TABLE article_image (
 	id bigint NOT NULL AUTO_INCREMENT,
 	article_id bigint NOT NULL,
 	image_id bigint NOT NULL,
+	paragraph tinyint NOT NULL,
 	
 	PRIMARY KEY (id),
 	FOREIGN KEY (article_id) REFERENCES article (id),

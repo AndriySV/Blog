@@ -16,12 +16,10 @@ $(document).ready(function() {
 		
 		});
 		
-		
-		//Receive image names from the database
-		$('#selectImage').ready(function() {
-			
+		// If element #selectImage exists than the code will be run
+		if( $('#selectImage').length){
 			$.getJSON("/Blog/admin/recieveImages", function(images) {
-				var options = '<option>не обрано</option>';
+				var options = '<option></option>';
 				
 				for (var i = 0; i < images.length; i++) {
 					
@@ -31,10 +29,6 @@ $(document).ready(function() {
 				$('#selectImage').html(options);
 				
 			});
-			
-		});
-		
-		
-		
+		}
 		
 });

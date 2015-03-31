@@ -1,7 +1,6 @@
 package com.as.blog.util;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,113 +10,119 @@ import org.springframework.stereotype.Component;
 
 import com.as.blog.entity.Article;
 import com.as.blog.entity.ArticleImage;
-import com.as.blog.entity.Image;
 import com.as.blog.service.ArticleImageService;
 import com.as.blog.service.ArticleService;
 
 /**
- * @author Andrii 
- * 	Retrieves all articles and images from the Blog database and
+ * @author Andrii Retrieves all articles and images from the Blog database and
  *         provides their in the appropriate Controller.
  */
 @Component
 public class ArticleProvider {
-	
+
 	@Autowired
 	private ArticleService articleService;
 
 	@Autowired
 	private ArticleImageService articleImageService;
+
+	private Pattern patternNewLine;
 	
-	private Pattern pattern;
-	private Matcher matcher;
+	private Pattern patternNewParagraph;
 	
-	private final static String ADD_PARAGRAPH = "\n";
+	private Matcher matcherNewLine;
+	private Matcher matcherNewParagraph;
 	
-	private StringBuilder title;
-	private StringBuilder image;
-	private StringBuilder content;
-	private StringBuilder creationDate;
-	private StringBuilder wholeArticle;
-	private StringBuilder allArticles;
+	private final static String NEW_LINE = "\n";
+	private final static String NEW_PARAGRAPH = "<p>";
 	
-	private List<Image> images;
-	
+	private StringBuilder titleHTML;
+	private StringBuilder imageHTML;
+	private StringBuilder contentHTML;
+	private StringBuilder creationDateHTML;
+	private StringBuilder articleHTML;
+	private StringBuilder allArticlesHTML;
+
 	public ArticleProvider() {
-		pattern = Pattern.compile(ADD_PARAGRAPH);
-		allArticles = new StringBuilder("");
-		image = new StringBuilder("");
+		patternNewLine = Pattern.compile(NEW_LINE);
+		patternNewParagraph = Pattern.compile(NEW_PARAGRAPH);
 	}
-	
+
 	/**
-	 * Retrieves all articles and images from the Blog database 
+	 * Retrieves all articles and images from the Blog database
 	 */
 	public StringBuilder retrieveArticles() {
+		allArticlesHTML = new StringBuilder("");
 		List<Article> articles = articleService.findAll();
 
 		// Sorting the articles in the descending order.
 		Collections.sort(articles, new DescendingSortArticle());
 
 		for (Article article : articles) {
-			allArticles.append(formArticle(article));
+			allArticlesHTML.append(formArticle(article));
 		}
-		return allArticles;
-	}
-
-	public List<Image> displayImages(Article article) {
-		// we find which images the article has !
-		List<ArticleImage> articleImages = articleImageService.findByArticle(article);
-		List<Image> imageList = null;
-		
-		if (articleImages.size() != 0) {
-			imageList = new LinkedList<Image>();
-			
-			for (ArticleImage articleImage : articleImages) {
-				imageList.add(articleImage.getImage());
-			}
-		}
-		return imageList;
-	}
-
-	/**
-	 * Adds paragraphs into the article.
-	 * @return Article with paragraphs. 
-	 */
-	private String addParagraph(String article) {
-		matcher = pattern.matcher(article);
-		
-		return matcher.replaceAll("</p><p>");
+		return allArticlesHTML;
 	}
 
 	private StringBuilder formArticle(Article article) {
-		images = displayImages(article);
-		
-		title = new StringBuilder("<div  class='row text-justify div-article'><h2>");
-		title.append(article.getTitle());
-		title.append("</h2>");
+		titleHTML = new StringBuilder("<div  class='row text-justify div-article'><h2>");
+		titleHTML.append(article.getTitle());
+		titleHTML.append("</h2>");
 
-		if (images != null) {
-			image = new StringBuilder("<img class='img-rounded img-responsive pull-left image-article' ");
-			image.append("src='image_article/");
+		contentHTML = new StringBuilder("<p>");
+		contentHTML.append(addParagraph(article.getContent()));
+		contentHTML.append("</p>");
 
-			// TODO set some variable into method get
-			image.append(images.get(0).getName());
-			image.append("' alt='Responsive image'> ");
+		addImage(article);
+
+		creationDateHTML = new StringBuilder("<p class='blog-post-meta'>");
+		creationDateHTML.append(article.getCreationDate());
+		creationDateHTML.append("</p></div><hr>");
+
+		articleHTML = new StringBuilder(titleHTML);
+		articleHTML.append(contentHTML);
+		articleHTML.append(creationDateHTML);
+
+		return articleHTML;
+	}
+	
+	/**
+	 * Adds paragraphs into the article.
+	 * 
+	 * @return Article with paragraphs.
+	 */
+	private String addParagraph(String articleText) {
+		matcherNewLine = patternNewLine.matcher(articleText);
+
+		return matcherNewLine.replaceAll("</p><p>");
+	}
+
+	private void addImage(Article article) {
+		// we find which images the article has !
+		List<ArticleImage> articleImages = articleImageService.findByArticle(article);
+	
+		for (ArticleImage articleImage : articleImages) {
+			imageHTML = new StringBuilder("<img class='img-rounded img-responsive pull-left image-article' ");
+			imageHTML.append("src='image_article/");
+			imageHTML.append(articleImage.getImage().getName());
+			imageHTML.append("'> ");
+	
+			insertImageIntoContext(articleImage.getParagraph());
 		}
-
-		content = new StringBuilder("<p>");
-		content.append(addParagraph(article.getContent()));
-		content.append("</p>");
-
-		creationDate = new StringBuilder("<p class='blog-post-meta'>");
-		creationDate.append(article.getCreationDate());
-		creationDate.append("</p></div><hr>");
-
-		wholeArticle = new StringBuilder(title);
-		wholeArticle.append(image);
-		wholeArticle.append(content);
-		wholeArticle.append(creationDate);
-
-		return wholeArticle;
+	}
+	
+	private void insertImageIntoContext(byte paragraph) {
+		matcherNewParagraph = patternNewParagraph.matcher(contentHTML.toString());
+		
+		int i = 1;
+		while (matcherNewParagraph.find()) {
+			if (i == paragraph) {
+				contentHTML.insert(matcherNewParagraph.start(), imageHTML);
+				
+				// TODO i++;
+				break;
+			}
+			i++;
+		}
 	}
 }

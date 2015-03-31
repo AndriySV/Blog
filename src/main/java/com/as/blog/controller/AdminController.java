@@ -58,22 +58,23 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String addArticle(Article article, BindingResult bindingResult, String imageName) {
-		
+	public String addArticle(Article article, BindingResult bindingResult, String imageName, byte paragraph) {
 		articleValidator.validate(article, bindingResult);
 		
 		if (!bindingResult.hasErrors()) {
-			
 			Date currentDate = new Date(new java.util.Date().getTime());
 			article.setCreationDate(currentDate);
-			
 			articleService.save(article);
+
+			if (!imageName.equals("") & paragraph > 0) {
+				ArticleImage articleImage = new ArticleImage();
+				articleImage.setArticle(article);
+				articleImage.setImage(imageService.findByName(imageName));
+				articleImage.setParagraph(paragraph);
+				
+				articleImageService.save(articleImage);
+			}
 			
-			ArticleImage articleImage = new ArticleImage();
-			articleImage.setArticle(article);
-			articleImage.setImage(imageService.findByName(imageName));
-			
-			articleImageService.save(articleImage);
 			
 			return "redirect:/";
 		} else {
