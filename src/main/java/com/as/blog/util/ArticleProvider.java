@@ -114,15 +114,13 @@ public class ArticleProvider {
 	private void insertImageIntoContext(byte paragraph) {
 		matcherNewParagraph = patternNewParagraph.matcher(contentHTML.toString());
 		
-		int i = 1;
+		int count = 1;
 		while (matcherNewParagraph.find()) {
-			if (i == paragraph) {
+			if (count == paragraph) {
 				contentHTML.insert(matcherNewParagraph.start(), imageHTML);
-				
-				// TODO i++;
 				break;
 			}
-			i++;
+			count++;
 		}
 	}
 }
