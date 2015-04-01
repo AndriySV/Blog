@@ -69,9 +69,9 @@ public class ArticleProvider {
 		titleHTML.append(article.getTitle());
 		titleHTML.append("</h2>");
 
-		contentHTML = new StringBuilder("<p>");
-		contentHTML.append(addParagraph(article.getContent()));
-		contentHTML.append("</p>");
+		contentHTML = new StringBuilder("<div class='row div-paragraph'><p>");
+		contentHTML.append(addDivParagraph(article.getContent()));
+		contentHTML.append("</p></div>");
 
 		addImage(article);
 
@@ -91,10 +91,10 @@ public class ArticleProvider {
 	 * 
 	 * @return Article with paragraphs.
 	 */
-	private String addParagraph(String articleText) {
+	private String addDivParagraph(String articleText) {
 		matcherNewLine = patternNewLine.matcher(articleText);
 
-		return matcherNewLine.replaceAll("</p><p>");
+		return matcherNewLine.replaceAll("</p></div><div class='row div-paragraph'><p>");
 	}
 
 	private void addImage(Article article) {

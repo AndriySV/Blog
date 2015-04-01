@@ -58,7 +58,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String addArticle(Article article, BindingResult bindingResult, String imageName, byte paragraph) {
+	public String addArticle(Article article, BindingResult bindingResult, String[] imageNames, byte[] paragraphs) {
 		articleValidator.validate(article, bindingResult);
 		
 		if (!bindingResult.hasErrors()) {
@@ -66,20 +66,27 @@ public class AdminController {
 			article.setCreationDate(currentDate);
 			articleService.save(article);
 
-			if (!imageName.equals("") & paragraph > 0) {
-				ArticleImage articleImage = new ArticleImage();
-				articleImage.setArticle(article);
-				articleImage.setImage(imageService.findByName(imageName));
-				articleImage.setParagraph(paragraph);
+			if (imageNames.length > 0 & paragraphs.length > 0 & imageNames.length == paragraphs.length) {
+				ArticleImage articleImage = null;
 				
-				articleImageService.save(articleImage);
+				for (int i = 0; i < imageNames.length; i++) {
+					if (!imageNames[i].equals("") & paragraphs[i] > 0) {
+						articleImage = new ArticleImage();
+						articleImage.setArticle(article);
+						articleImage.setImage(imageService.findByName(imageNames[i]));
+						articleImage.setParagraph(paragraphs[i]);
+						
+						articleImageService.save(articleImage);
+					} else {
+						// TODO Maybe need to write log here (wrong name or paragraph)
+					}
+				}
 			}
-			
-			
 			return "redirect:/";
 		} else {
 			return "admin";
 		}
+		
 	}
 	
 	@RequestMapping(value="/saveImage", method=RequestMethod.POST)

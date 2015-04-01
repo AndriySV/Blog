@@ -42,7 +42,7 @@
 		<script src="<c:url value='/js/jquery.js' />" ></script>
 		<script src="<c:url value='/js/bootstrap.min.js' />" ></script>
 		<script src="<c:url value='/js/validator.js' />" ></script>
-		<script src="<c:url value='/js/popover.js' />" ></script>
+		<script src="<c:url value='/js/registration.js' />" ></script>
 		<script src="<c:url value='/js/bootstrap-datepicker.js' />" ></script>
 		<script src="<c:url value='/js/calendar.js' />" ></script>
 		<script src="<c:url value='/js/bootstrap-filestyle.js' />" ></script>

@@ -29,7 +29,7 @@
 				<li><a href="#">Мотивація</a></li>
 				<li><a href="#">Музика</a></li>
 				<li><a href="#">Форум</a></li>
-				<li><a href="about">Про мене</a></li>
+				<li><a href="/Blog/about">Про мене</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<security:authorize access="hasRole('ROLE_ANONYMOUS')">
@@ -38,16 +38,16 @@
 					</c:if>
 				
 					<li><a href="#login" data-toggle="modal">Увійти</a></li>
-					<li><a href="registration">Зареєструватись</a></li>
+					<li><a href="/Blog/registration">Зареєструватись</a></li>
 				</security:authorize>
 
 				<security:authorize access="hasRole('ROLE_ADMIN')">
-					<li><a href="admin">Admin</a></li>
+					<li><a href="/Blog/admin">Admin</a></li>
 				</security:authorize>
 				
 				<security:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 					<li><a class="glyphicon glyphicon-user"> ${pageContext.request.userPrincipal.name}</a></li>
-					<li><a href="userProfile" >Мій профіль</a></li>
+					<li><a href="/Blog/userProfile" >Мій профіль</a></li>
 					<li><a href="${logoutUrl}" >Вийти</a></li>
 				</security:authorize>
 			</ul>

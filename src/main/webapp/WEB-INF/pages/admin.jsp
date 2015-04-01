@@ -37,33 +37,20 @@
 							</div>
 
 							<!-- Field Content -->
-							<div class="form-group required">
+							<div class="form-group">
 								<sf:textarea class="form-control" rows="10" cols=""
 									path="content" placeholder="Введіть статтю"
 									data-error="Введіть статтю !" required="required" />
 								<div class="help-block with-errors"></div>
 							</div>
 							
+							<!-- Add images to the article -->
+							<div class="form-group" id="addImageIntoArticle"></div>
 							
 							<div class="form-group">
-								<label for="selectImageDiv" class="col-sm-3 control-label">Додати зображення</label>
-								
-								<!-- Field Select image -->
-								<div class="col-sm-6" id="selectImageDiv">
-
-									<!-- TODO Use special bootstrap-select (with icon)  -->
-									<select class="form-control" id="selectImage" name="imageName">
-										<!-- Data are uploaded from the database -->
-									</select>
-								</div>	
-
-								<!-- Field Select paragraph -->
-								<div class="col-sm-3">
-									<!-- TODO Make a tip which will be shown during tipping something in this field  -->
-									<!-- TODO Required  -->
-									<input type="number" class="form-control" 
-											placeholder="параграф №:" name="paragraph" value="1">
-								</div>
+								<button type="button" id="addAnotherImageIntoArticle" class="btn btn-danger btn-sm">
+									<span class="glyphicon glyphicon-plus"></span> Додати зобрвження
+								</button>
 							</div>
 
 							<div class="form-group">
