@@ -12,4 +12,6 @@ public interface ArticleService {
 	
 	public List<Article> findAll();
 	
+	public void delete(long id);
+	
 }

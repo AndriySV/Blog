@@ -11,4 +11,6 @@ public interface ArticleImageService {
 	
 	public List<ArticleImage> findByArticle(Article article);
 	
+	public void deleteByArticleId(long articleId);
+	
 }
