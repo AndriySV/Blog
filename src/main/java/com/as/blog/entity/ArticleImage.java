@@ -63,5 +63,10 @@ public class ArticleImage {
 	public void setParagraph(byte paragraph) {
 		this.paragraph = paragraph;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "ArticleImage [id=" + id + ", article=" + article + ", image="
+				+ image + ", paragraph=" + paragraph + "]";
+	}
 }

@@ -20,3 +20,21 @@
 	padding-top: 0px;
   	padding-right: 0px;
 } 
+
+.nav-stacked .divider{
+	height: 1px;
+	background-color: pink;
+}
+
+.nav-stacked a{
+	color: rgb(197, 10, 180);
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+	color:  #FF009B;
+}
+
+.table-striped > tbody > tr > td[class='article-delete']{
+	padding: 0px;
+  	padding-left: 65px;
+}

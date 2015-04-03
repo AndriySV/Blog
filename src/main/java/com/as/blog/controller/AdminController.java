@@ -66,7 +66,9 @@ public class AdminController {
 			article.setCreationDate(currentDate);
 			articleService.save(article);
 
-			if (imageNames.length > 0 & paragraphs.length > 0 & imageNames.length == paragraphs.length) {
+			if (imageNames != null & paragraphs != null)
+				if (imageNames.length == paragraphs.length) {
+					
 				ArticleImage articleImage = null;
 				
 				for (int i = 0; i < imageNames.length; i++) {
@@ -81,13 +83,13 @@ public class AdminController {
 						// TODO Maybe need to write log here (wrong name or paragraph)
 					}
 				}
+				return "redirect:/";
 			}
 			return "redirect:/";
 		} else {
 			return "admin";
 		}
-		
-	}
+	}	
 	
 	@RequestMapping(value="/saveImage", method=RequestMethod.POST)
 	public String saveFile(@ModelAttribute("uploadImage") FileUpload uploadImage) 
@@ -121,4 +123,25 @@ public class AdminController {
 		return images;
 	}
 	
+	@RequestMapping(value="/recieveArticles", method=RequestMethod.POST)
+	public @ResponseBody List<Article> recieveArticles(){
+		List<Article> articles = articleService.findAll();
+		
+		return articles;
+	}
+	
+	@RequestMapping(value="/deleteArticles", method=RequestMethod.POST)
+	public String deleteArticles(long[] articleId){
+		if (articleId != null) {
+			for (int i = 0; i < articleId.length; i++) {
+				articleImageService.deleteByArticleId(articleId[i]);
+				articleService.delete(articleId[i]);
+			}
+		}else{
+			System.out.println();
+			// TODO Sent the message to the server (It was not chosen any article)
+		}
+		
+		return "redirect:/admin";
+	}
 }

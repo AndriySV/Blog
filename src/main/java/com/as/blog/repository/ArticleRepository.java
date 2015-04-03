@@ -6,7 +6,6 @@ import com.as.blog.entity.Article;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-	Article findByTitle(String title);
-
+	public Article findByTitle(String title);
 	
 }

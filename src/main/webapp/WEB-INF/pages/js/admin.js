@@ -69,6 +69,8 @@ $(document).ready(function() {
 			
 		});
 		
+		//TODO Maybe use POST method !
+		// Recieves images from the database
 		function recieveImages(imageIndex) {
 			$.getJSON("/Blog/admin/recieveImages", function(images) {
 				var options = '<option></option>';
@@ -79,6 +81,27 @@ $(document).ready(function() {
 				}
 
 				$('#selectImage' + imageIndex).html(options);
+			});
+		}
+		
+		//Show all articles
+		if( $('#articleTable tbody').length){
+
+			$.post('/Blog/admin/recieveArticles', function(articles) {
+				for (var item = articles.length-1; item >= 0; item--) {
+					var row = '<tr>'
+					+		'<td>' + ++item + '</td>'
+					+		'<td>' + articles[--item].title + '</td>'
+					+		'<td>' + articles[item].creationDate + '</td>'
+					+		'<td class="article-delete">'
+					+			'<div class="checkbox">'
+					+				'<input type="checkbox" name="articleId" value="' + articles[item].id + '">'
+					+			'</div>'
+					+		'</td>'
+					+	'</tr>';
+					
+					$('#articleTable tbody').append(row);
+				}
 			});
 		}
 		

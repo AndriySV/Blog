@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	
 	if( $(".blog-post").length){
+		
+		// TODO Maybe delete (ready)
 		$(".blog-post").ready(function() {
 			
 			// Invokes the method from the controller 
