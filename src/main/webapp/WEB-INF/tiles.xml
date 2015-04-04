@@ -4,32 +4,32 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	<definition name="baseLayout" template="/WEB-INF/pages/layout/layout.jsp">
+	<definition name="baseLayout" template="/WEB-INF/pages/jsp/layout/layout.jsp">
 		<put-attribute name="title" value="StayFit" />
-		<put-attribute name="header" value="/WEB-INF/pages/layout/header.jsp" />
-		<put-attribute name="nav" value="/WEB-INF/pages/layout/nav.jsp" />
+		<put-attribute name="header" value="/WEB-INF/pages/jsp/layout/header.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/pages/jsp/layout/nav.jsp" />
 		<put-attribute name="right_panel"
-			value="/WEB-INF/pages/layout/right_panel.jsp" />
+			value="/WEB-INF/pages/jsp/layout/right_panel.jsp" />
 	</definition>
 
 	<definition name="index" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/pages/index.jsp" />
+		<put-attribute name="body" value="/WEB-INF/pages/jsp/index.jsp" />
 	</definition>
 	
 	<definition name="about" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/pages/about.jsp" />
+		<put-attribute name="body" value="/WEB-INF/pages/jsp/about.jsp" />
 	</definition>
 		
 	<definition name="admin" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/pages/admin.jsp" />
+		<put-attribute name="body" value="/WEB-INF/pages/jsp/admin_page/admin.jsp" />
 	</definition>
 	
 	<definition name="login" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/pages/login.jsp" />
+		<put-attribute name="body" value="/WEB-INF/pages/jsp/login.jsp" />
 	</definition>
 	
 	<definition name="registration" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/pages/registration.jsp" />
+		<put-attribute name="body" value="/WEB-INF/pages/jsp/registration.jsp" />
 	</definition>
 	
 </tiles-definitions>
