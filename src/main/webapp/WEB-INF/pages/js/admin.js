@@ -105,4 +105,36 @@ $(document).ready(function() {
 			});
 		}
 		
+		// Make active the latest tab after the page is uploaded.
+		$(function() { 
+			  $('.nav-stacked a[data-toggle="tab"]').on("click", function (e) {
+			    //save the latest tab; use cookies if you like 'em better:
+			    localStorage.setItem('lastTab', $(event.target).attr('id'));
+			  });
+
+			  //go to the latest tab, if it exists:
+			  var lastTab = localStorage.getItem('lastTab');
+			  if (lastTab) {
+			      $('#'+lastTab).tab('show');
+			  }
+		});
+		
+		// Sent article Id on the server which will be deleted.
+		$('#articleDeleteButton').click(function() {
+			// get all checked the inputs into an array.
+		    var inputs = $(':input[name="articleId"]:checked');
+		    
+		    if (inputs.length == 0) {
+		    	$('#noArticleDelete').modal('show');
+		    	
+		    } else {
+				$.post('/Blog/admin/deleteArticles', inputs, function(titles) {
+					alert(titles);
+					
+					location.reload();
+				});
+		    	
+			}
+		});
+		
 });
