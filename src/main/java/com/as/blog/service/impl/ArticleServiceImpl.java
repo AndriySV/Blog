@@ -40,4 +40,9 @@ public class ArticleServiceImpl implements ArticleService {
 		articleRepository.delete(id);
 	}
 
+	@Override
+	public Article findById(long id) {
+		return articleRepository.findById(id);
+	}
+
 }

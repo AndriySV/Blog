@@ -8,6 +8,8 @@ public interface ArticleService {
 
 	public void save(Article article);
 	
+	public Article findById(long id);
+	
 	public Article findByTitle(String title);
 	
 	public List<Article> findAll();
