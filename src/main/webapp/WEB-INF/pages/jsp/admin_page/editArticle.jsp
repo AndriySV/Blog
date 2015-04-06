@@ -6,6 +6,17 @@
 		<!-- Pane Name -->
 		<legend class="text-center">Редагувати статтю</legend>
 
-		<h1>Edit</h1>
+		<div class="form-group">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="col-md-2">#</th>
+						<th class="col-md-6">Назва статті</th>
+						<th class="col-md-4">Дата створення</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
 	</fieldset>
 </div>
