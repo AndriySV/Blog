@@ -125,15 +125,38 @@ $(document).ready(function() {
 		    var inputs = $(':input[name="articleId"]:checked');
 		    
 		    if (inputs.length == 0) {
-		    	$('#noArticleDelete').modal('show');
+		    	
+		    	$('#modalArticleDelete .modal-body').html(
+		    			'<div class="alert alert-danger">'
+					+		'<strong>Жодна стаття не була видалена. '
+					+			'<br>Оберіть будь-ласка статті які бажаєте видалити.'
+					+		'<strong>'
+					+	'</div>');
+		    	
+		    	$('#modalArticleDelete').modal('show');
 		    	
 		    } else {
-				$.post('/Blog/admin/deleteArticles', inputs, function(titles) {
-					alert(titles);
+				
+		    	$.post('/Blog/admin/deleteArticles', inputs, function(titles) {
 					
-					location.reload();
+					var titlesHTML = '';
+					for (var int = 0; int < titles.length; int++) {
+						titlesHTML += '<li>' + titles[int] + '</li>';
+					}
+					
+					$('#modalArticleDelete .modal-body').html(
+							'<div class="alert alert-success">'
+						+		'<strong>Статті:</strong>' 
+						+			'<ul>'+ titlesHTML + '</ul>'
+						+		'<strong>були успішно видалені.</strong>'
+						+	'</div>');
+					
+					$('#modalArticleDelete').modal('show');
+					
+					$('#buttonModalArticleDelete').click(function() {
+						location.reload();
+					});
 				});
-		    	
 			}
 		});
 		

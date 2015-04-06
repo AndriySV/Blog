@@ -26,8 +26,8 @@
 			</button>
 		</div>
 		
-		<!-- Modal window no article to delete -->
-		<div class="modal fade" id="noArticleDelete">
+		<!-- Modal window that contains information about the deleted articles. -->
+		<div class="modal fade" id="modalArticleDelete">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -35,16 +35,11 @@
 							aria-hidden="true">&times;</button>
 						<h4 class="modal-title">StayFit</h4>
 					</div>
-					<div class="modal-body">
-						<p>
-							Жодна стаття не була видалена. <br>Оберіть будь-ласка статті
-							які бажаєте видалити.
-						</p>
-					</div>
+					<div class="modal-body"></div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger center-block"
-							data-dismiss="modal">
-							<span class="glyphicon glyphicon-record"></span> Дякую за пораду
+							id="buttonModalArticleDelete" data-dismiss="modal">
+							<span class="glyphicon glyphicon-record"></span> Зрозуміло
 						</button>
 					</div>
 				</div>
