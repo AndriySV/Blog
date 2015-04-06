@@ -1,10 +1,15 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <div class="sidebar-module sidebar-module-inset">
 	<h4>Calendar</h4>
 	<br>
-	<br>
-	<br>
-	<br>
+	<h4>Weather</h4>
+	<a href="http://weather.in.ua/"
+		onClick="this.href='http://weather.in.ua/ua/ivano-frankovskaja/9431'">
+		<img src="http://informer.weather.in.ua/ua/15/9431.png"
+		alt="Погода в Україні" title="Погода в Україні" width="120"
+		height="60" border="0">
+	</a> <br>
 </div>
 
 <div class="sidebar-module">
