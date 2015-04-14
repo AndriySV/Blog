@@ -45,4 +45,9 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepository.findById(id);
 	}
 
+	@Override
+	public void update(long id, String title, String content) {
+		articleRepository.update(id, title, content);
+	}
+
 }

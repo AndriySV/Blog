@@ -36,4 +36,9 @@ public class ArticleImageServiceImpl implements ArticleImageService {
 		articleImageRepository.deleteByArticleId(articleId);
 	}
 
+	@Override
+	public List<ArticleImage> findByArticleId(long articleId) {
+		return articleImageRepository.findByArticleId(articleId);
+	}
+
 }

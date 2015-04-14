@@ -9,6 +9,8 @@ public interface ArticleImageService {
 	
 	public void save(ArticleImage articleImage);
 	
+	public List<ArticleImage> findByArticleId(long articleId);
+	
 	public List<ArticleImage> findByArticle(Article article);
 	
 	public void deleteByArticleId(long articleId);

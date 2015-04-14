@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.as.blog.bean.ImageParagraph;
 import com.as.blog.entity.Article;
 import com.as.blog.entity.ArticleImage;
 import com.as.blog.entity.Image;
@@ -54,8 +55,6 @@ public class AdminController {
 
 	@RequestMapping
 	public String openAdmin(Model model) {
-		
-		// TODO  Does it need ?
 		model.addAttribute(new Article());
 		return "admin";
 	}
@@ -122,15 +121,15 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-	@RequestMapping(value = "/recieveImages", method = RequestMethod.GET)
-	public @ResponseBody List<Image> recieveImages() {
+	@RequestMapping(value = "/recieveImages", method = RequestMethod.POST)
+	public @ResponseBody List<Image> receiveAllImages() {
 		List<Image> images = imageService.findAll();
 
 		return images;
 	}
 
 	@RequestMapping(value = "/recieveArticles", method = RequestMethod.POST)
-	public @ResponseBody List<Article> recieveArticles() {
+	public @ResponseBody List<Article> receiveArticles() {
 		List<Article> articles = articleService.findAll();
 
 		return articles;
@@ -154,6 +153,46 @@ public class AdminController {
 			articleTitles
 					.add("Жодна стаття не була видалена. \nОберіть статті, які бажаєте видилити.");
 			return articleTitles;
+		}
+	}
+
+	@RequestMapping(value="/receiveArticle", method = RequestMethod.POST,
+					produces = "application/json; charset=utf-8")
+	public @ResponseBody Article receiveArticle(Long id) {
+		return articleService.findById(id);
+	}
+	
+	@RequestMapping(value="/receiveImageParagraphs", method = RequestMethod.POST,
+			produces = "application/json; charset=utf-8")
+	public @ResponseBody List<ImageParagraph> receiveImageParagraphs(Long id){
+		List<ArticleImage> articleImages = articleImageService.findByArticleId(id);
+		List<ImageParagraph> imageParagraphs = null;
+		
+		if (articleImages != null) {
+			imageParagraphs = new LinkedList<ImageParagraph>();
+			ImageParagraph imageParagraph;
+		
+			for (ArticleImage articleImage : articleImages) {
+				imageParagraph = new ImageParagraph();
+				imageParagraph.setImageName(articleImage.getImage().getName());
+				imageParagraph.setParagraph(articleImage.getParagraph());
+				
+				imageParagraphs.add(imageParagraph);
+			}
+		}
+		return imageParagraphs;
+	}
+
+	@RequestMapping(value="/updateArticle", method=RequestMethod.POST)
+	public String updateArticle(Article article, BindingResult bindingResult, Model model) {
+		articleValidator.validate(article, bindingResult);
+	
+		if (!bindingResult.hasErrors()) {
+			articleService.update(article.getId(), article.getTitle(), article.getContent());
+			return "redirect:/";
+		} else {
+			model.addAttribute("error", "true"); 
+			return "admin";
 		}
 	}
 

@@ -13,6 +13,8 @@ public interface ArticleImageRepository extends JpaRepository<ArticleImage, Long
 
 	public List<ArticleImage> findByArticle(Article article);
 	
+	public List<ArticleImage> findByArticleId(long articleId);
+	
 	@Modifying
 	@Query("DELETE FROM ArticleImage WHERE article_id = ?1")
 	public void deleteByArticleId(long articleId);
