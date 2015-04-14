@@ -16,6 +16,18 @@
 		<put-attribute name="body" value="/WEB-INF/pages/jsp/index.jsp" />
 	</definition>
 	
+	<definition name="motivation" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/jsp/motivation.jsp" />
+	</definition>
+	
+	<definition name="music" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/jsp/music.jsp" />
+	</definition>
+	
+	<definition name="forum" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/jsp/forum.jsp" />
+	</definition>
+	
 	<definition name="about" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/pages/jsp/about.jsp" />
 	</definition>
@@ -30,6 +42,10 @@
 	
 	<definition name="registration" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/pages/jsp/registration.jsp" />
+	</definition>
+	
+	<definition name="userProfile" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/pages/jsp/userProfile.jsp" />
 	</definition>
 	
 </tiles-definitions>

@@ -27,9 +27,9 @@
 						<li class="divider"></li>
 						<li><a href="#">Еще одна отдельная ссылка</a></li>
 					</ul></li>
-				<li><a href="#">Мотивація</a></li>
-				<li><a href="#">Музика</a></li>
-				<li><a href="#">Форум</a></li>
+				<li><a href="/Blog/motivation">Мотивація</a></li>
+				<li><a href="/Blog/music">Музика</a></li>
+				<li><a href="/Blog/forum">Форум</a></li>
 				<li><a href="/Blog/about">Про мене</a></li>
 			</ul>
 			
