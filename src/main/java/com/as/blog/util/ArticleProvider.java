@@ -14,7 +14,8 @@ import com.as.blog.service.ArticleImageService;
 import com.as.blog.service.ArticleService;
 
 /**
- * @author Andrii Retrieves all articles and images from the Blog database and
+ * @author Andrii 
+ * Retrieves all articles and images from the Blog database and
  *         provides their in the appropriate Controller.
  */
 @Component

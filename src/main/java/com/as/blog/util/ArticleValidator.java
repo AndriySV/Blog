@@ -19,6 +19,9 @@ public class ArticleValidator implements Validator {
 		return Article.class.equals(clazz);
 	}
 
+	/**
+	 * Validates whether there is the article with the given title in the database.
+	 */
 	@Override
 	public void validate(Object object, Errors errors) {
 		Article currentArticle = (Article) object;

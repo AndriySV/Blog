@@ -28,6 +28,10 @@ import com.as.blog.util.ArticleValidator;
 import com.as.blog.util.FileUpload;
 import com.as.blog.util.ImageValidator;
 
+/**
+ * @author Андрій
+ *	Processes data from admin.jsp
+ */
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
@@ -53,12 +57,19 @@ public class AdminController {
 	@Value("${image_path}")
 	private String imagePath;
 
+	/**
+	 * Creates the article object which is used for adding article into the database
+	 * @return the value which redirects to the page admin.jsp
+	 */
 	@RequestMapping
 	public String openAdmin(Model model) {
 		model.addAttribute(new Article());
 		return "admin";
 	}
 
+	/**
+	 * Saves an article to the database 
+	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addArticle(Article article, BindingResult bindingResult,
 			String[] imageNames, byte[] paragraphs) {
@@ -96,6 +107,9 @@ public class AdminController {
 		}
 	}
 
+	/**
+	 *  Saves an image to the database
+	 */
 	@RequestMapping(value = "/saveImage", method = RequestMethod.POST)
 	public String saveFile(@ModelAttribute("uploadImage") FileUpload uploadImage)
 			throws IllegalStateException, IOException {
@@ -121,6 +135,9 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
+	/**
+	 * @return all images from the database.
+	 */
 	@RequestMapping(value = "/recieveImages", method = RequestMethod.POST)
 	public @ResponseBody List<Image> receiveAllImages() {
 		List<Image> images = imageService.findAll();
@@ -128,6 +145,9 @@ public class AdminController {
 		return images;
 	}
 
+	/**
+	 * @return all articles from the database
+	 */
 	@RequestMapping(value = "/recieveArticles", method = RequestMethod.POST)
 	public @ResponseBody List<Article> receiveArticles() {
 		List<Article> articles = articleService.findAll();
@@ -135,6 +155,9 @@ public class AdminController {
 		return articles;
 	}
 
+	/**
+	 * Deletes articles with the specified id
+	 */
 	@RequestMapping(value = "/deleteArticles", method = RequestMethod.POST, 
 					produces = "application/json; charset=utf-8")
 	public @ResponseBody List<String> deleteArticles(long[] articleId) {
@@ -156,12 +179,18 @@ public class AdminController {
 		}
 	}
 
+	/**
+	 * @return the article with the specified id
+	 */
 	@RequestMapping(value="/receiveArticle", method = RequestMethod.POST,
 					produces = "application/json; charset=utf-8")
 	public @ResponseBody Article receiveArticle(Long id) {
 		return articleService.findById(id);
 	}
 	
+	/**
+	 * @return the objects ImageParagraphs with the specified id
+	 */
 	@RequestMapping(value="/receiveImageParagraphs", method = RequestMethod.POST,
 			produces = "application/json; charset=utf-8")
 	public @ResponseBody List<ImageParagraph> receiveImageParagraphs(Long id){
@@ -183,6 +212,9 @@ public class AdminController {
 		return imageParagraphs;
 	}
 
+	/**
+	 * Updates the specified article. 
+	 */
 	@RequestMapping(value="/updateArticle", method=RequestMethod.POST)
 	public String updateArticle(Article article, BindingResult bindingResult, Model model) {
 		articleValidator.validate(article, bindingResult);

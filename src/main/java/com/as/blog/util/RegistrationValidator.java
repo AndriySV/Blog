@@ -10,6 +10,11 @@ import org.springframework.validation.Validator;
 import com.as.blog.entity.User;
 import com.as.blog.service.UserService;
 
+/**
+ * Validates user's name and email
+ * @author Андрій
+ *
+ */
 @Component
 public class RegistrationValidator implements Validator  {
 
@@ -21,6 +26,9 @@ public class RegistrationValidator implements Validator  {
 		return User.class.equals(clazz);
 	}
 
+	/**
+	 * Validates whether there are given name or email in the table User
+	 */
 	@Override
 	public void validate(Object object, Errors errors) {
 

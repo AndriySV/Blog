@@ -5,9 +5,18 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.codec.binary.Hex;
 
+/**
+ * @author Андрій
+ *  Encodes a password.
+ */
 public class PasswordEncoder {
 	private static final String ENCODING_ALGORITHM = "SHA-256";
 	
+	/**
+	 * Encodes a specified password 
+	 * @param password that will be encoded
+	 * @return an encoded a password 
+	 */
 	public static String encode(String password) {
 		try {
 			byte[] bytePassword = password.getBytes();

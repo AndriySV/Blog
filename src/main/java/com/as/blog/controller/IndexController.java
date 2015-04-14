@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.as.blog.util.ArticleProvider;
 
+/**
+ * @author Андрій
+ * Processes data from index.jsp
+ */
 @Controller
 @RequestMapping(value="/")
 public class IndexController {
@@ -15,11 +19,17 @@ public class IndexController {
 	@Autowired
 	private ArticleProvider articleProvider; 
 	
+	/**
+	 * * @return the value which redirects to the page index.jsp 
+	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public String showMainPage() {
 		return "index";
 	}
 	
+	/**
+	 * Displays all articles on the index page.
+	 */
 	@RequestMapping(value="/displayArticles", method=RequestMethod.POST,
 					produces = "application/json; charset=utf-8")
 	public @ResponseBody StringBuilder displayArticles(){
