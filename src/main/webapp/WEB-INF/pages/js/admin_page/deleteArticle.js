@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	//Display all articles on the deleteArticle.jsp
-	if( $('#articleTable tbody').length){
+	if( $('#articleDeleteTable tbody').length){
 
 		$.post('/Blog/admin/recieveArticles', function(articles) {
 			for (var item = articles.length-1; item >= 0; item--) {
@@ -16,7 +16,7 @@ $(document).ready(function() {
 				+		'</td>'
 				+	'</tr>';
 				
-				$('#articleTable tbody').append(row);
+				$('#articleDeleteTable tbody').append(row);
 			}
 		});
 	}

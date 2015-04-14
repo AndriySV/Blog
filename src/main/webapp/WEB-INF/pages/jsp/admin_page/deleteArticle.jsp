@@ -7,7 +7,7 @@
 		<legend class="text-center">Видалити статті</legend>
 
 		<div class="form-group">
-			<table class="table table-striped" id="articleTable">
+			<table class="table table-striped" id="articleDeleteTable">
 				<thead>
 					<tr>
 						<th class="col-md-1">#</th>

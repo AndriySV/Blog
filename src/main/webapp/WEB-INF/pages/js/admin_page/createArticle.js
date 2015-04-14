@@ -1,16 +1,23 @@
 $(document).ready(function() {
 	
-	// Recieves images from the database
-	if( $("#selectImage0").length){
-		recieveImages(0);
+	var imageIndex;
+
+	$('#addAnotherImageToCreate').click(function() {
+		setImageIndex();
+		setFieldImageParagraph();
+		retrieveImages();
+		setParagraphTip();
+	});
+	
+	function setImageIndex(){
+		imageIndex = $("#createArticleForm div[class='row']").length;
+		return imageIndex;
 	}
 	
-	$('#addAnotherImageIntoArticle').click(function() {
-		var imageIndex = $("#addImageIntoArticle div[class='row']").length;
-
-		// Add images to the article
-		$('#addImageIntoArticle').append(
-				'<div class="row">'
+	// Creates the field for adding an image and paragraph into the article
+	function setFieldImageParagraph() {
+		var fieldImageParagraphHTML = 
+			'<div class="row">'
 			+ 			'<label for="selectImageDiv" class="col-sm-2 control-label">Оберіть зображення</label>'
 						// Field select image
 			+			'<div class="col-sm-6" id="selectImageDiv">'
@@ -24,18 +31,38 @@ $(document).ready(function() {
 			+				'<div class="input-group">'
 			+					'<span class="input-group-addon glyphicon glyphicon-chevron-right"></span>'
 								// Can contains values only from 1 to 99
-			+					'<input type="text" class="form-control" id="tip" name="paragraphs" placeholder="№:" '
+			+					'<input type="text" class="form-control" name="paragraphs" placeholder="№:" '
 			+							'pattern="^[1-9]{1}[0-9]{0,1}" data-error="Невірний номер параграфу." '
 			+							'required="required">'
 			+				'</div>'
 			+				'<div class="help-block with-errors"></div>'	
 			+			'</div>'
 			+			'<button type="button" class="close col-sm-1" data-dismiss="alert" aria-hidden="true">&times;</button>'
-			+	'</div>'
-			);
+			+	'</div>';
 		
-		recieveImages(imageIndex);
-		
+		$('#addImageToCreate').append(fieldImageParagraphHTML);
+	}
+	
+	// Retrieves all images
+	function retrieveImages() {
+		$.post("/Blog/admin/recieveImages", function(images) {
+			addImages(images);
+		});
+	}
+	
+	// Adds all images name into the field image
+	function addImages(images) {
+		var options = '<option></option>';
+			
+		for (var i = 0; i < images.length; i++) {
+			options += '<option>' + images[i].name + '</option>'
+		}
+			
+		$('#selectImage' + imageIndex).html(options);
+	}
+	
+	// Adds a tip to the field paragraph 
+	function setParagraphTip() {
 		$("input[name='paragraphs']").focus(function() {
 			$(this).popover({
 					trigger:"focus",
@@ -49,22 +76,6 @@ $(document).ready(function() {
 		
 		$("input[name='paragraphs']").blur(function() {
 			$(this).popover("hide");
-		});
-		
-	});
-	
-	//TODO Maybe use POST method !
-	// Recieves images from the database
-	function recieveImages(imageIndex) {
-		$.getJSON("/Blog/admin/recieveImages", function(images) {
-			var options = '<option></option>';
-			
-			for (var i = 0; i < images.length; i++) {
-				
-				options += '<option>' + images[i].name + '</option>'
-			}
-
-			$('#selectImage' + imageIndex).html(options);
 		});
 	}
 	

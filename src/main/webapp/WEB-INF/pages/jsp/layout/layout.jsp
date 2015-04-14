@@ -49,6 +49,7 @@
 		<script src="<c:url value='/js/admin_page/admin.js' />" ></script>
 		<script src="<c:url value='/js/admin_page/createArticle.js' />" ></script>
 		<script src="<c:url value='/js/admin_page/downloadImage.js' />" ></script>
+		<script src="<c:url value='/js/admin_page/editArticle.js' />" ></script>
 		<script src="<c:url value='/js/admin_page/deleteArticle.js' />" ></script>
 		<script src="<c:url value='/js/index.js' />" ></script>
 	</body>

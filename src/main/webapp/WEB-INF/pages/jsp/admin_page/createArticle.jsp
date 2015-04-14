@@ -7,7 +7,8 @@
 		<!-- Form Name -->
 		<legend class="text-center">Створити статтю</legend>
 
-		<div>
+		<!-- Form for creating article -->
+		<div id="createArticleForm">
 			<sf:form action="admin/add" method="POST" class="form-horizontal"
 				role="form" modelAttribute="article" data-toggle="validator">
 
@@ -29,12 +30,12 @@
 				</div>
 
 				<!-- Add images to the article -->
-				<div class="form-group" id="addImageIntoArticle"></div>
+				<div class="form-group" id="addImageToCreate"></div>
 
 				<div class="form-group">
-					<button type="button" id="addAnotherImageIntoArticle"
+					<button type="button" id="addAnotherImageToCreate"
 						class="btn btn-danger btn-sm">
-						<span class="glyphicon glyphicon-plus"></span> Додати зобрвження
+						<span class="glyphicon glyphicon-plus"></span> Додати зображення
 					</button>
 				</div>
 
