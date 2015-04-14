@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value="/about")
-public class AboutController {
-
+@RequestMapping(value = "/music")
+public class MusicController {
+	
 	@RequestMapping
 	public String openPage() {
-		return "about";
+		return "music";
 	}
-	
+
 }
