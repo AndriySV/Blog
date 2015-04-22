@@ -215,17 +215,18 @@ public class AdminController {
 	/**
 	 * Updates the specified article. 
 	 */
-	@RequestMapping(value="/updateArticle", method=RequestMethod.POST)
-	public String updateArticle(Article article, BindingResult bindingResult, Model model) {
-		articleValidator.validate(article, bindingResult);
-	
-		if (!bindingResult.hasErrors()) {
-			articleService.update(article.getId(), article.getTitle(), article.getContent());
-			return "redirect:/";
+	@RequestMapping(value="/updateArticle", method=RequestMethod.POST,
+				produces = "text/plain; charset=utf-8")
+	public @ResponseBody String updateArticle(Article article) {
+		Article existingArticle = articleService.findByTitle(article.getTitle());
+		
+		// check if there is other article with specified title.
+		if (existingArticle != null && existingArticle.getId() != article.getId()) {
+			return "false";
 		} else {
-			model.addAttribute("error", "true"); 
-			return "admin";
+			articleService.update(article.getId(), article.getTitle(), article.getContent());
+			return "true";
 		}
 	}
-
+	
 }

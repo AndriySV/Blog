@@ -8,10 +8,6 @@
 		<!-- Pane Name -->
 		<legend class="text-center">Редагувати статтю</legend>
 
-		<c:if test="${error == true}">
-			<div id="errorEditArticle"></div>
-		</c:if>
-		
 		<table class="table table-striped" id="articleEditTable">
 			<thead>
 				<tr>
@@ -26,29 +22,25 @@
 
 		<div id="editArticleForm" hidden="">
 		
-			<!-- Form for editing article -->
-			<sf:form action="/Blog/admin/updateArticle" method="POST" class="form-horizontal"
-				role="form" modelAttribute="article" data-toggle="validator">
-			
 				<!-- Field Title -->
-				<div class="form-group required">
-					<sf:textarea class="form-control" rows="3" cols="" path="title" id="articleTitleToEdit"
-							placeholder="Введіть заголовок статті"
-							data-error="Введіть заголовок !" required="required"></sf:textarea>
-					<div class="help-block with-errors"></div>
-					<sf:errors path="title" class="error" />
-				</div>
+				<form role="form" data-toggle="validator">
+					<div class="form-group required">
+						<textarea class="form-control" rows="3" cols="" name="title" id="articleTitleToEdit"
+								placeholder="Введіть заголовок статті"
+								data-error="Введіть заголовок !" required="required"></textarea>
+						<div class="help-block with-errors"></div>
+					</div>
+				</form>
 			
 				<!-- Field Content -->
 				<div class="form-group">
-					<sf:textarea class="form-control" rows="10" cols="" id="articleContentToEdit"
-						path="content" placeholder="Введіть статтю"
-						data-error="Введіть статтю !" required="required" />
-					<div class="help-block with-errors"></div>
+					<textarea class="form-control" rows="10" cols="" 
+						id="articleContentToEdit" name="content"></textarea>
 				</div>
-				
+			
+				<!-- Article Id -->	
 				<div class="form-group" hidden="">
-					<sf:input id="articleIdToEdit" path="id"/>
+					<input id="articleIdToEdit" name="id"/>
 				</div>
 				
 				<!-- Add images to the article -->
@@ -62,11 +54,27 @@
 				</div>
 			
 				<div class="form-group">
-					<button type="submit" class="btn btn-danger btn-lg center-block">
+					<button type="submit" class="btn btn-danger btn-lg center-block"
+						id="articleUpdateButton">
 						<span class="glyphicon glyphicon-ok"></span> Редагувати статтю
 					</button>
 				</div>
-			</sf:form>
+		</div>
+		
+			<!-- Modal window that contains information about the article updating. -->
+		<div class="modal fade" id="modalArticleUpdate">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">StayFit</h4>
+					</div>
+					<div class="modal-body"></div>
+					
+					<div class="modal-footer"></div>
+				</div>
+			</div>
 		</div>
 	</fieldset>
 </div>

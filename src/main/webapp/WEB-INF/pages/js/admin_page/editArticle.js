@@ -4,6 +4,7 @@ $(document).ready(function() {
 	var imageIndex;
 	var paragraph = "";
 	var imageName = "";
+	var article;
 	
 	if( $('#articleEditTable').length){
 
@@ -31,11 +32,11 @@ $(document).ready(function() {
 			setParagraphTip();
 		});
 		
-		// Displays error. 
-		if ( $('#errorEditArticle').length) {
-			$('#articleEditTable').hide();	
-			$('#editArticleForm').show();
-		}
+		$('#articleUpdateButton').click(function() {
+			setArticle();
+			updateArticle();
+		});
+		
 	}
 	
 	//Displays all articles on the editArticle.jsp
@@ -194,6 +195,72 @@ $(document).ready(function() {
 	
 	function getImageName() {
 		return imageName;
+	}
+	
+	function setArticle() {
+		article = {title:$('#articleTitleToEdit').val(),
+			content:$('#articleContentToEdit').val(),
+			id:$('#articleIdToEdit').val()}; 
+	}
+	
+	function getArticle() {
+		return article;
+	}
+	
+	function updateArticle() {
+		
+		// work if title isn't null
+		if (getArticle().title.length) {
+			
+			$.post("/Blog/admin/updateArticle", getArticle(), function(isUpdate) {
+	
+				if (isUpdate == "false") {
+					setModalTitleExist(article.title);
+					$('#modalArticleUpdate').modal('show');
+					
+				} else if (isUpdate == "true") {
+					setModalArticleUpdated(article.title);
+					$('#modalArticleUpdate').modal('show');
+				}
+			});
+		}
+	}
+	
+	function setModalTitleExist(title){
+		var modalBody = 
+				'<div class="alert alert-danger">'
+			+		'<strong>Неможливо здійснити редагування сторінки.<br></strong>'
+			+		'<strong>Стаття із заголовком</strong>' 
+			+			'<ul>' + title + '</ul>'
+			+		'<strong>уже існує.</strong>'
+			+	'</div>';
+		
+		$('#modalArticleUpdate .modal-body').html(modalBody);
+
+		var modalFooter = 
+				'<button type="button" class="btn btn-danger" data-dismiss="modal">'
+		+			'<span class="glyphicon glyphicon-record"></span> Зрозуміло'
+		+		'</button>';
+		
+		$('#modalArticleUpdate .modal-footer').html(modalFooter);
+	}
+	
+	function setModalArticleUpdated(title) {
+		var modalBody = 
+				'<div class="alert alert-success">'
+			+		'<strong>Стаття</strong>'
+			+			'<ul>' + title + '</ul>'
+			+ 		'<strong>була успішно оновлена.</strong>'
+			+	'</div>';
+		
+		$('#modalArticleUpdate .modal-body').html(modalBody);
+		
+		var modalFooter = 
+				'<button type="button" class="btn btn-danger" data-dismiss="modal">'
+			+		'<span class="glyphicon glyphicon-record"></span> Зрозуміло'
+			+	'</button>';
+	
+	$('#modalArticleUpdate .modal-footer').html(modalFooter);
 	}
 	
 });

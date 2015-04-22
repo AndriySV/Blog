@@ -32,7 +32,7 @@ $(document).ready(function() {
 	    			'<div class="alert alert-danger">'
 				+		'<strong>Жодна стаття не була видалена. '
 				+			'<br>Оберіть будь-ласка статті які бажаєте видалити.'
-				+		'<strong>'
+				+		'</strong>'
 				+	'</div>');
 	    	
 	    	$('#modalArticleDelete').modal('show');
