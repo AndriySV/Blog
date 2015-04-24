@@ -215,18 +215,24 @@ public class AdminController {
 	/**
 	 * Updates the specified article. 
 	 */
+	// FIXME This method has to get the needed data from editArticle.js
 	@RequestMapping(value="/updateArticle", method=RequestMethod.POST,
 				produces = "text/plain; charset=utf-8")
-	public @ResponseBody String updateArticle(Article article) {
-		Article existingArticle = articleService.findByTitle(article.getTitle());
+	public @ResponseBody String updateArticle(String str) {
 		
+//		System.out.println(article.getTitle());
+		
+//		Article existingArticle = articleService.findByTitle(article.getTitle());
+		
+		System.out.println(str);
+		return null;
 		// check if there is other article with specified title.
-		if (existingArticle != null && existingArticle.getId() != article.getId()) {
+		/*if (existingArticle != null && existingArticle.getId() != article.getId()) {
 			return "false";
 		} else {
 			articleService.update(article.getId(), article.getTitle(), article.getContent());
 			return "true";
-		}
+		}*/
 	}
 	
 }

@@ -4,7 +4,9 @@ $(document).ready(function() {
 	var imageIndex;
 	var paragraph = "";
 	var imageName = "";
+	
 	var article;
+	var imageParagraphs = [];
 	
 	if( $('#articleEditTable').length){
 
@@ -117,11 +119,12 @@ $(document).ready(function() {
 		imageIndex = getImageIndex();
 		paragraph = getParagraph();
 		
+		// TODO Im Par
 		var fieldImageParagraphHTML = 
 			'<div class="row">'
-		+ 			'<label for="selectImageDiv" class="col-sm-2 control-label">Оберіть зображення</label>'
+		+ 			'<label class="col-sm-2 control-label">Оберіть зображення</label>'
 				// Field select image
-		+			'<div class="col-sm-6" id="selectImageDiv">'
+		+			'<div class="col-sm-6">'
 		+				'<div class="input-group">'
 		+					'<span class="input-group-addon glyphicon glyphicon-picture"></span>'
 		+					'<select class="form-control" name="imageNames" id="editImage' + imageIndex + '"></select>'
@@ -197,28 +200,37 @@ $(document).ready(function() {
 		return imageName;
 	}
 	
+	// TODO Art
 	function setArticle() {
 		article = {title:$('#articleTitleToEdit').val(),
 			content:$('#articleContentToEdit').val(),
 			id:$('#articleIdToEdit').val()}; 
+		
 	}
 	
 	function getArticle() {
 		return article;
 	}
 	
+	// FIXME This method has to pass needed data to the Controller 
 	function updateArticle() {
 		
 		// work if title isn't null
 		if (getArticle().title.length) {
 			
-			$.post("/Blog/admin/updateArticle", getArticle(), function(isUpdate) {
+			var str = ["one", "two"]
+			
+									//FIXME Pass right data !!!  
+			$.post("/Blog/admin/updateArticle", {str:str}, function(isUpdate) {
 	
 				if (isUpdate == "false") {
 					setModalTitleExist(article.title);
 					$('#modalArticleUpdate').modal('show');
 					
 				} else if (isUpdate == "true") {
+					
+				//	updateImageParagraphs();
+					
 					setModalArticleUpdated(article.title);
 					$('#modalArticleUpdate').modal('show');
 				}
@@ -260,7 +272,32 @@ $(document).ready(function() {
 			+		'<span class="glyphicon glyphicon-record"></span> Зрозуміло'
 			+	'</button>';
 	
-	$('#modalArticleUpdate .modal-footer').html(modalFooter);
+		$('#modalArticleUpdate .modal-footer').html(modalFooter);
 	}
+	
+	function updateImageParagraphs() {
+		
+		
+		
+	}
+	
+	function setImageParagraphs() {
+		var imageNames = [];
+		imageNames = $('#addImageToEdit select[name="imageNames"]');
+		
+		var paragraphs = [];
+		paragraphs = $('#addImageToEdit input[name="paragraphs"]');
+		
+		for (var int = 0; int < imageNames.length; int++) {
+			
+			imageParagraphs[int] = {imageName:imageNames[int].value,
+									paragraph:paragraphs[int].value};
+		}
+	}
+	
+	function getImageParagraphs() {
+		return imageParagraphs;
+	}
+	
 	
 });
